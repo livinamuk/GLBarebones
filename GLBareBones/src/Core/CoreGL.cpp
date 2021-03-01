@@ -364,12 +364,9 @@ void CoreGL::SetCamera(Camera* camera)
 void CoreGL::ToggleFullScreen()
 {
 	CoreGL::SetFullscreen(!CoreGL::IsFullscreen());
-	/*Renderer::s_gBuffer.Configure(CoreGL::s_windowWidth, CoreGL::s_windowHeight);
-	Renderer::s_compositeBuffer.Configure(CoreGL::s_windowWidth, CoreGL::s_windowHeight);
-	Renderer::s_LightingBuffer.Configure(CoreGL::s_windowWidth, CoreGL::s_windowHeight);
-	Renderer::s_FinalImageBuffer.Configure(CoreGL::s_windowWidth, CoreGL::s_windowHeight);
-	Renderer::s_DOFBuffer.Configure(CoreGL::s_windowWidth, CoreGL::s_windowHeight);
-	*/
+
+	Renderer::s_gBuffer.Configure(CoreGL::s_windowWidth, CoreGL::s_windowHeight);
+
 	std::cout << "Switching too: " << CoreGL::s_windowWidth << " x " << CoreGL::s_windowHeight << "\n";
 	p_camera->m_disableMouseLookTimer = 10;
 }

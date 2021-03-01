@@ -151,6 +151,9 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="src\Physics\RaycastResult.cpp" />
+    <ClCompile Include="src\Renderer\Decal.cpp" />
+    <ClCompile Include="src\Renderer\GBuffer.cpp" />
     <ClCompile Include="src\Renderer\Renderer.cpp" />
     <ClCompile Include="src\Core\Entity.cpp" />
     <ClCompile Include="src\Physics\Physics.cpp" />
@@ -170,6 +173,9 @@
     <ClCompile Include="vendor\stb_image\stb_image.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="src\Physics\RaycastResult.h" />
+    <ClInclude Include="src\Renderer\Decal.h" />
+    <ClInclude Include="src\Renderer\GBuffer.h" />
     <ClInclude Include="src\Renderer\Renderer.h" />
     <ClInclude Include="src\Core\Entity.h" />
     <ClInclude Include="src\Physics\Physics.h" />
@@ -194,6 +200,8 @@
     <ClInclude Include="vendor\tinyobj\tiny_obj_loader.h" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="res\shaders\decals.frag" />
+    <None Include="res\shaders\decals.vert" />
     <None Include="res\shaders\solidColor.frag" />
     <None Include="res\shaders\solidColor.vert" />
     <None Include="res\shaders\test.frag" />

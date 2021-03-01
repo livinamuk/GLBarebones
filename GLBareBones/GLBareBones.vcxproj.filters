@@ -77,6 +77,9 @@
     <ClCompile Include="src\Physics\Physics.cpp" />
     <ClCompile Include="src\Renderer\TextBlitter.cpp" />
     <ClCompile Include="src\Renderer\Renderer.cpp" />
+    <ClCompile Include="src\Renderer\Decal.cpp" />
+    <ClCompile Include="src\Physics\RaycastResult.cpp" />
+    <ClCompile Include="src\Renderer\GBuffer.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\Core\Camera.h">
@@ -135,6 +138,9 @@
     <ClInclude Include="src\Physics\Physics.h" />
     <ClInclude Include="src\Renderer\TextBlitter.h" />
     <ClInclude Include="src\Renderer\Renderer.h" />
+    <ClInclude Include="src\Renderer\Decal.h" />
+    <ClInclude Include="src\Physics\RaycastResult.h" />
+    <ClInclude Include="src\Renderer\GBuffer.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="res\shaders\test.frag">
@@ -151,5 +157,7 @@
     </None>
     <None Include="res\shaders\textured2DquadShader.frag" />
     <None Include="res\shaders\textured2DquadShader.vert" />
+    <None Include="res\shaders\decals.frag" />
+    <None Include="res\shaders\decals.vert" />
   </ItemGroup>
 </Project>

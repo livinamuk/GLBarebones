@@ -4,17 +4,20 @@
 #include "Core/Camera.h"
 #include "Core/Entity.h"
 #include "Helpers/Util.h"
+#include "Renderer/Decal.h"
 #include "Renderer/Model.h"
 #include "Renderer/Texture.h"
 #include "Renderer/TextBlitter.h"
 #include "Renderer/Renderer.h"
 #include "Physics/physics.h"
+#include "Physics/RaycastResult.h"
 
 int main()
 {
     CoreGL::InitGL(SCR_WIDTH, SCR_HEIGHT);
     Physics::Init();
     Renderer::Init();
+
     Camera camera;
     CoreGL::SetCamera(&camera);
     Renderer::p_camera = &camera;
@@ -34,14 +37,24 @@ int main()
 
         CoreGL::ProcessInput(); 
         Input::HandleKeypresses();
-    
-        // Hotload shader
+
+        // Hotload shader?
         if (Input::s_keyPressed[HELL_KEY_H])
             Renderer::HotLoadShaders();
-        
-        // Text Blit Pass
+
+        // Ray cast every frame
+        RaycastResult raycastResult;
+        raycastResult.CastRay(camera.m_transform.position, camera.m_Front, 10);
+
+        // Create new decal on mouse click
+        if (Input::s_leftMousePressed) {
+            Decal::s_decals.push_back(Decal(raycastResult.m_hitPoint, raycastResult.m_surfaceNormal));
+        }
+
+        // Text to blit...
         TextBlitter::BlitLine("Show Bullet Debug: " + Util::BoolToString(Input::s_showBulletDebug));
-        TextBlitter::BlitLine("Fullscreen: " + Util::BoolToString(CoreGL::IsFullscreen()));
+        TextBlitter::BlitLine("Ray Hit: " + Util::PhysicsObjectEnumToString(raycastResult.m_objectType));
+        TextBlitter::BlitLine("Decal count: " + std::to_string(Decal::s_decals.size()));
 
         // RENDER FRAME
         Renderer::RenderFrame();

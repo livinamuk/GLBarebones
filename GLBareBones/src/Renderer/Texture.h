@@ -1,16 +1,16 @@
 #pragma once
-#include <string>
-#include <glad/glad.h>
-#include <GLFW/glfw3.h>
-#include <iostream>
+#include "Header.h"
 
 #include <stb_image.h>
 
 class Texture
 {
 public: // Methods
-	Texture();
 	Texture(std::string filename);
+	static void LoadTexture(std::string filename);
+	static GLuint GetTexIDByTexName(std::string name);
+
+private: 
 	void ReadFromDisk();
 	void LoadToGL();
 
@@ -19,8 +19,10 @@ public: // fields
 	std::string name;
 	int width, height;
 
-private: // fields
+private:
 	unsigned char* data;
 	int nrChannels;
+	
+	static std::vector<Texture> s_textures;
 };
 

@@ -118,7 +118,7 @@ std::string Util::BoolToString(bool boolean)
 		return "FALSE";
 }
 
-/*char* Util::PhysicsObjectEnumToString(PhysicsObjectType objectType)
+std::string Util::PhysicsObjectEnumToString(PhysicsObjectType objectType)
 {
 	if (objectType == PhysicsObjectType::UNDEFINED)
 		return "UNDEFINED";
@@ -144,4 +144,4 @@ std::string Util::BoolToString(bool boolean)
 		return "WINDOW";
 	if (objectType == PhysicsObjectType::GLASS)
 		return "GLASS";
-}*/
+}

@@ -9,7 +9,8 @@
 
 Camera::Camera()
 {
-	m_transform.position = glm::vec3(0, 0.0f, 2);
+	m_viewHeight = 1.3f;
+	m_transform.position = glm::vec3(0, m_viewHeight, 2);
 	m_transform.rotation = glm::vec3(-HELL_PI, -3.14, 0);
 	m_transform.scale = glm::vec3(1);
 	m_oldX = 1280 / 2;
@@ -20,24 +21,14 @@ Camera::Camera()
 
 void Camera::CalculateMatrices()
 {
-	float viewHeight = 1.3f;
-	m_transform.position.y = viewHeight;
 	m_viewMatrix = glm::inverse(m_transform.to_mat4());
 	m_inverseViewMatrix = glm::inverse(m_viewMatrix);
 
 	glm::mat4 worldMatrix = m_transform.to_mat4();
-	m_Right = glm::vec3(worldMatrix[0]);
-	m_Up = glm::vec3(worldMatrix[1]);
-	m_Front = glm::vec3(worldMatrix[2]);
 
 	m_Right = glm::vec3(worldMatrix[0]);//*glm::vec3(-1, -1, -1);
 	m_Up = glm::vec3(worldMatrix[1]);// *glm::vec3(-1, -1, -1);
-	m_Front = glm::vec3(worldMatrix[2]);// *glm::vec3(-1, -1, -1);
-
-	m_viewPos.x = m_inverseViewMatrix[3][0];
-	m_viewPos.y = m_inverseViewMatrix[3][1];
-	m_viewPos.z = m_inverseViewMatrix[3][2];
-
+	m_Front = glm::vec3(worldMatrix[2]) * glm::vec3(-1, -1, -1);
 
 	glm::vec4 vP = (m_inverseViewMatrix * glm::vec4(0, 0, 0, 1));
 	m_viewPos = glm::vec3(vP.x, vP.y, vP.z);
@@ -92,10 +83,10 @@ void Camera::PlayerMovement(float deltaTime)
 	float speed = 5;
 
 	if (Input::s_keyDown[HELL_KEY_W]) {
-		m_transform.position -= Forward * deltaTime * speed;
+		m_transform.position += Forward * deltaTime * speed;
 	}
 	if (Input::s_keyDown[HELL_KEY_S]) {
-		m_transform.position += Forward * deltaTime * speed;
+		m_transform.position -= Forward * deltaTime * speed;
 	}
 	if (Input::s_keyDown[HELL_KEY_A]) {
 		m_transform.position += m_Right * deltaTime * speed;

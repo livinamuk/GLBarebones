@@ -1,14 +1,27 @@
 #include "Texture.h"
 
-Texture::Texture()
-{
-}
+std::vector<Texture> Texture::s_textures;
 
 Texture::Texture(std::string name)
 {
 	this->name = name;
 	ReadFromDisk();
 	LoadToGL();
+}
+
+void Texture::LoadTexture(std::string filename)
+{
+	s_textures.push_back(Texture(filename));
+}
+
+GLuint Texture::GetTexIDByTexName(std::string name)
+{
+	for (Texture& texture : s_textures)
+	{
+		if (name == texture.name)
+			return texture.ID;
+	}
+	return -1;
 }
 
 void Texture::ReadFromDisk()

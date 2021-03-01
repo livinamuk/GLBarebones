@@ -23,7 +23,7 @@ public:
 	static btVector3 glmVec3_to_btVec3(glm::vec3 vector);
 	static btQuaternion glmVec3_to_btQuat(glm::vec3 vector);
 	static glm::vec3 btVec3_to_glmVec3(btVector3);
-//	static char* PhysicsObjectEnumToString(PhysicsObjectType objectType);
+	static std::string PhysicsObjectEnumToString(PhysicsObjectType objectType);
 
 	static std::string BoolToString(bool boolean);
 };
